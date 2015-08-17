@@ -20,6 +20,7 @@ general loop speedup
 //#define DIGITALIO_NO_MIX_ANALOGWRITE
 #include "digitalIOPerformance.h"
 #include <MIDI.h>
+MIDI_CREATE_DEFAULT_INSTANCE();
 
 int drymix,wetmix,dely_in;
 int32_t write_head,read_head;
@@ -355,7 +356,7 @@ void loop() {
 if (MIDI.read()) {                    
     byte type = MIDI.getType();
     switch (type) {
-      case NoteOn:
+      case 0x90: //note on. For some reasong "NoteOn" won't work enven though it's declared in midi_Defs.h
         incoming_note = MIDI.getData1();
         //velocity = MIDI.getData2();
         channel = MIDI.getChannel();
@@ -366,7 +367,7 @@ if (MIDI.read()) {
         
         break;
 
-      case NoteOff:
+      case 0x80: //note off
 
         incoming_note = MIDI.getData1();
                 channel = MIDI.getChannel();
@@ -894,6 +895,5 @@ smooth_ar[place][i] = input;                 // input new data into the oldest s
 
   return total >>3;
 }
-
 
 
