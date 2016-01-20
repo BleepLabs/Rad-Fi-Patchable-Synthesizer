@@ -264,11 +264,12 @@ if (MIDI.read(set_ch)) {
     // digitalWrite(11,HIGH);
 
     byte type = MIDI.getType();
+    incoming_note = MIDI.getData1();
+    midi_velocity = MIDI.getData2();
+   
     switch (type) {
       case 0x90: //note on. For some reasong "NoteOn" won't work enven though it's declared in midi_Defs.h
-        incoming_note = MIDI.getData1();
-        midi_velocity = MIDI.getData2();
-   
+
         if (midi_velocity>0){
         
           pcnt=0;
