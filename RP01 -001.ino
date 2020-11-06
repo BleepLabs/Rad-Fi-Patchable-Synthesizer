@@ -5,7 +5,7 @@ http://bleeplabs.com/store/the-rad-fi-system/
 */
 #include <avr/pgmspace.h>
 //#define DIGITALIO_NO_MIX_ANALOGWRITE
-#include "digitalIOPerformance.h"
+// #include "digitalIOPerformance.h" //osbolete after Arduino IDE 1.6
 #include <MIDI.h>
 #include <TimerOne.h>
 MIDI_CREATE_DEFAULT_INSTANCE();
